@@ -1,6 +1,26 @@
 #全排列，组合数
+def perm(l,stack):                #循环加递归 设计一个辅助的栈来储存组合数
+    if not l:
+        print(stack)
+    for i in range(len(l)):
+        stack.append(l.pop(l.index(l[i])))
+        perm(l,stack)
+        l.insert(i,stack.pop())
+perm([1,2,3],[])
 
-
-
+#用递归的思路，通过交换列表中元素的位置
+def perm_1(n,begin,end):
+    global COUNT
+    COUNT = 0
+    if begin >= end:
+        print(n)
+        COUNT += 1
+    else:
+        i = begin
+        for j in range(begin,end):
+            n[i],n[j] = n[j],n[i]
+            perm_1(n,begin+1,end)
+            n[i],n[j] = n[j],n[i]
+perm_1([1,2,3],0,len(n))
 
 #hanoi塔
